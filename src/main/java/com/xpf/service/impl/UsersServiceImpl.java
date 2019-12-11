@@ -38,7 +38,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     /**
-     *查询是否有此用户
+     *查询是否重名
      */
     @Override
     public Boolean checkUser(String name) {
@@ -59,6 +59,16 @@ public class UsersServiceImpl implements UsersService {
         }else {
             return null;
         }
+    }
+
+    /**
+     * 通过id删除用户
+     * @param id
+     */
+    @Override
+    public Boolean deleteUsersById(Integer id) {
+        if(usersMapper.deleteByPrimaryKey(id) == 1) return true;
+        return false;
     }
 
     //判断用户名是否重复

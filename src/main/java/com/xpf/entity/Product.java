@@ -40,4 +40,14 @@ public class Product {
     public void setProductName(String productName) {
         this.productName = productName == null ? null : productName.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "pid=" + pid +
+                ", bid=" + bid +
+                ", cid=" + cid +
+                ", productName='" + productName + '\'' +
+                '}';
+    }
 }

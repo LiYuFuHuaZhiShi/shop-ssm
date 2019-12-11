@@ -1,6 +1,7 @@
 package com.xpf.dao;
 
 import com.xpf.entity.Users;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,5 +22,5 @@ public interface UsersMapper {
 
     Users findByName(String name);
 
-    Users findUser(String name, String password);
+    Users findUser(@Param("name") String name, @Param("password") String password);
 }

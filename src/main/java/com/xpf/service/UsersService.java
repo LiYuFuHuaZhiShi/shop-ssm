@@ -28,4 +28,10 @@ public interface UsersService {
      */
     Boolean addUsers(Users users);
 
+    /**
+     * 通过id删除用户
+     * @param id
+     */
+    Boolean deleteUsersById(Integer id);
+
 }

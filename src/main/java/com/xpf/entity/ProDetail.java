@@ -20,4 +20,12 @@ public class ProDetail {
     public void setPid(Integer pid) {
         this.pid = pid;
     }
+
+    @Override
+    public String toString() {
+        return "ProDetail{" +
+                "pdId=" + pdId +
+                ", pid=" + pid +
+                '}';
+    }
 }

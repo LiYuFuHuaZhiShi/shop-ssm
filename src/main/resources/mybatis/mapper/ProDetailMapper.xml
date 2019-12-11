@@ -4,9 +4,11 @@
   <resultMap id="BaseResultMap" type="com.xpf.entity.ProDetail" >
     <id column="pd_id" property="pdId" jdbcType="INTEGER" />
     <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="num" property="num" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    pd_id, pid
+    pd_id as pdId, pid, price, num
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -19,8 +21,10 @@
     where pd_id = #{pdId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xpf.entity.ProDetail" >
-    insert into pro_detail (pd_id, pid)
-    values (#{pdId,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER})
+    insert into pro_detail (pd_id, pid, price, 
+      num)
+    values (#{pdId,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{num,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xpf.entity.ProDetail" >
     insert into pro_detail
@@ -31,6 +35,12 @@
       <if test="pid != null" >
         pid,
       </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="pdId != null" >
@@ -38,6 +48,12 @@
       </if>
       <if test="pid != null" >
         #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -47,12 +63,25 @@
       <if test="pid != null" >
         pid = #{pid,jdbcType=INTEGER},
       </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
     </set>
     where pd_id = #{pdId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xpf.entity.ProDetail" >
     update pro_detail
-    set pid = #{pid,jdbcType=INTEGER}
+    set pid = #{pid,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      num = #{num,jdbcType=INTEGER}
     where pd_id = #{pdId,jdbcType=INTEGER}
   </update>
+  <select id="selectAllPro" resultType="com.xpf.entity.ProDetail">
+    select
+    <include refid="Base_Column_List" />
+    from pro_detail
+  </select>
 </mapper>

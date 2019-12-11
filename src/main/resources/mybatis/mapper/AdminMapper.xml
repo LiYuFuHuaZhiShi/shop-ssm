@@ -68,4 +68,10 @@
       password = #{password,jdbcType=VARCHAR}
     where aid = #{aid,jdbcType=INTEGER}
   </update>
+  <select id="findAdmin" resultType="com.xpf.entity.Admin">
+    select
+    <include refid="Base_Column_List" />
+    from admin
+    where username=#{username} and passwrod=#{password}
+  </select>
 </mapper>

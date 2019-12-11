@@ -79,4 +79,9 @@
       product_name = #{productName,jdbcType=VARCHAR}
     where pid = #{pid,jdbcType=INTEGER}
   </update>
+  <select id="selectAllProduct" resultType="com.xpf.entity.Product">
+    select
+    <include refid="Base_Column_List" />
+    from product
+  </select>
 </mapper>
