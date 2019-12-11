@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xpf.dao.ProSpecsMapper" >
+  <resultMap id="BaseResultMap" type="com.xpf.entity.ProSpecs" >
+    <id column="ps_id" property="psId" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="sid" property="sid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ps_id, pid, sid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pro_specs
+    where ps_id = #{psId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pro_specs
+    where ps_id = #{psId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xpf.entity.ProSpecs" >
+    insert into pro_specs (ps_id, pid, sid
+      )
+    values (#{psId,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xpf.entity.ProSpecs" >
+    insert into pro_specs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="psId != null" >
+        ps_id,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="psId != null" >
+        #{psId,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xpf.entity.ProSpecs" >
+    update pro_specs
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null" >
+        sid = #{sid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ps_id = #{psId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xpf.entity.ProSpecs" >
+    update pro_specs
+    set pid = #{pid,jdbcType=INTEGER},
+      sid = #{sid,jdbcType=INTEGER}
+    where ps_id = #{psId,jdbcType=INTEGER}
+  </update>
+</mapper>

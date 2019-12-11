@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xpf.dao.ProDetailSpecsValueMapper" >
+  <resultMap id="BaseResultMap" type="com.xpf.entity.ProDetailSpecsValue" >
+    <id column="pdsv_id" property="pdsvId" jdbcType="INTEGER" />
+    <result column="pd_id" property="pdId" jdbcType="INTEGER" />
+    <result column="sv_id" property="svId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="pro_num" property="proNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pdsv_id, pd_id, sv_id, price, pro_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pro_detail_specs_value
+    where pdsv_id = #{pdsvId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pro_detail_specs_value
+    where pdsv_id = #{pdsvId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xpf.entity.ProDetailSpecsValue" >
+    insert into pro_detail_specs_value (pdsv_id, pd_id, sv_id, 
+      price, pro_num)
+    values (#{pdsvId,jdbcType=INTEGER}, #{pdId,jdbcType=INTEGER}, #{svId,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{proNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xpf.entity.ProDetailSpecsValue" >
+    insert into pro_detail_specs_value
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pdsvId != null" >
+        pdsv_id,
+      </if>
+      <if test="pdId != null" >
+        pd_id,
+      </if>
+      <if test="svId != null" >
+        sv_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="proNum != null" >
+        pro_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pdsvId != null" >
+        #{pdsvId,jdbcType=INTEGER},
+      </if>
+      <if test="pdId != null" >
+        #{pdId,jdbcType=INTEGER},
+      </if>
+      <if test="svId != null" >
+        #{svId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="proNum != null" >
+        #{proNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xpf.entity.ProDetailSpecsValue" >
+    update pro_detail_specs_value
+    <set >
+      <if test="pdId != null" >
+        pd_id = #{pdId,jdbcType=INTEGER},
+      </if>
+      <if test="svId != null" >
+        sv_id = #{svId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="proNum != null" >
+        pro_num = #{proNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pdsv_id = #{pdsvId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xpf.entity.ProDetailSpecsValue" >
+    update pro_detail_specs_value
+    set pd_id = #{pdId,jdbcType=INTEGER},
+      sv_id = #{svId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      pro_num = #{proNum,jdbcType=INTEGER}
+    where pdsv_id = #{pdsvId,jdbcType=INTEGER}
+  </update>
+</mapper>
